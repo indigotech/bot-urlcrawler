@@ -1,8 +1,8 @@
 # Slack URL bot
 
-This bot is based on: https://github.com/indigotech/tqt-bot/blob/master/README.md
-
 Bot that will read URLs posted on Slack and add them to a [Swiftype](https://swiftype.com) engine
+
+Original source at [askmon/slack-bot-url-crawler](https://github.com/askmon/slack-bot-url-crawler), project was develop for Taqtile's Hackathon '16
 
 ## Configure
 
