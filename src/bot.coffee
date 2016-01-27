@@ -172,7 +172,6 @@ module.exports = (callback) ->
             urls = ""
             urlsArray = []
             db.get "test", (err, filters) ->
-              console.log JSON.stringify filters.filters + "filt"
               for string in result
                 if string.substring(0, 4) is "http"
                   uriii = new URI string
