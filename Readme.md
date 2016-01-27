@@ -24,9 +24,13 @@ $ npm install
 $ npm start
 ```
 
-## Need to know
+## Setup
 
-- The bot will assume that your engine document structure will be like:
+- Create account at Swiftype
+- Create an `API-based Search Engine` at https://swiftype.com/engines/api
+  - IMPORTANT: Use `Engine name` as `knowledgebase` and `Document Type Name` as `links`
+
+- The bot will assume that your engine document structure will be like: (used for the [search project](https://github.com/indigotech/bot-urlcrawler-search))
 
 ```javascript
 {
@@ -50,6 +54,10 @@ $ npm start
   type: 'string'
 }
 ```
+
+- Heroku app
+  - Create a new app
+  - Add mongolab addon
 
 ## Needs to be done
 
