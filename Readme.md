@@ -14,15 +14,6 @@ This bot runs using [node-foreman](https://github.com/strongloop/node-foreman), 
 
 _tip:_ You can use [`.env.example`](.env.example) file as a template for the config
 
-## Running
-
-- Tested only on node.js `v0.12.0`
-
-- Execute:
-```
-$ npm install
-$ npm start
-```
 
 ## Setup
 
@@ -58,6 +49,17 @@ $ npm start
 - Heroku app
   - Create a new app
   - Add mongolab addon
+
+
+## Running
+
+- Tested only on node.js `v0.12.0`
+
+- Execute:
+```
+$ npm install
+$ npm start
+```
 
 ## Needs to be done
 
