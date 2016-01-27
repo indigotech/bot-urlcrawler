@@ -49,6 +49,8 @@ _tip:_ You can use [`.env.example`](.env.example) file as a template for the con
 - Heroku app
   - Create a new app
   - Add mongolab addon
+    - On your new database create a collection named `filters`
+    - Create a document on collection `filters`, this doc should have an empty array called `filters`
 
 
 ## Running
