@@ -24,12 +24,20 @@ async   = require('async')
 childProcess = require('child_process')
 
 # crawler
-module_crawler = require '../url_crawler/crawler'
-crawler = module_crawler async, childProcess
+# module_crawler = require '../url_crawler/crawler'
+# crawler = module_crawler async, childProcess
 #db
-module_db = require '../url_crawler/db'
-db = module_db mongojs
+# module_db = require '../url_crawler/db'
+# db = module_db mongojs
 
+expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+regex = new RegExp(expression)
+
+createUrlArray = (text) ->
+  console.log text
+  if text
+    urls = text.match regex
+  return urls
 
 validate = (text) ->
   console.log text
@@ -49,7 +57,9 @@ removeFromSwiftype = (url, callback) ->
 
 module.exports = (robot) ->
 
-  robot.hear /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi, (msg) ->
+  robot.hear expression, (msg) ->
+    urls = createUrlArray msg.message.text
+
 
     # willadd = true
     #
