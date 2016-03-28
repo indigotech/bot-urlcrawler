@@ -27,8 +27,12 @@ childProcess = require('child_process')
 # module_crawler = require '../url_crawler/crawler'
 # crawler = module_crawler async, childProcess
 #db
-# module_db = require '../url_crawler/db'
-# db = module_db mongojs
+module_db = require('../url_crawler/db')
+db = module_db mongojs
+
+#filters
+module_filter = require('../url_crawler/filter')
+filters = module_filter db
 
 expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
 regex = new RegExp(expression)
@@ -59,7 +63,15 @@ module.exports = (robot) ->
 
   robot.hear expression, (msg) ->
     urls = createUrlArray msg.message.text
+    console.log JSON.stringify(filters)
 
+    async.each urls, (url, callback) ->
+      filters.isFiltered url, (filtered) ->
+        if filtered
+          console.log "filtered"
+          callback()
+        else
+          console.log "no filter"
 
     # willadd = true
     #
