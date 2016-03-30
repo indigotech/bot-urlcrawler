@@ -12,10 +12,7 @@
 # Author:
 #   Team 4
 
-request = require('request')
-swiftypeapi = require('swiftype')
 mongojs = require('mongojs')
-URI = require('urijs')
 
 configHelper = require('tq1-helpers').config_helper
 
@@ -23,9 +20,6 @@ configHelper = require('tq1-helpers').config_helper
 async   = require('async')
 childProcess = require('child_process')
 
-# crawler
-# module_crawler = require '../url_crawler/crawler'
-# crawler = module_crawler async, childProcess
 #db
 module_db = require('../url_crawler/db')
 db = module_db mongojs
@@ -33,6 +27,10 @@ db = module_db mongojs
 #filters
 module_filter = require('../url_crawler/filter')
 filters = module_filter db
+
+#swiftype
+module_swiftype = require('../url_crawler/swiftype')
+swiftype = module_swiftype()
 
 expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
 regex = new RegExp(expression)
@@ -42,15 +40,6 @@ createUrlArray = (text) ->
   if text
     urls = text.match regex
   return urls
-
-validate = (text) ->
-  console.log text
-  if text?.text? and text.text.match(regex)
-    urls = text.text.match(regex)
-    console.log urls
-    return urls
-  else
-    return undefined
 
 removeFromSwiftype = (url, callback) ->
   console.log encodeURIComponent(url)
@@ -63,15 +52,17 @@ module.exports = (robot) ->
 
   robot.hear expression, (msg) ->
     urls = createUrlArray msg.message.text
-    console.log JSON.stringify(filters)
-
+    console.log urls
     async.each urls, (url, callback) ->
       filters.isFiltered url, (filtered) ->
         if filtered
-          console.log "filtered"
+          console.log url + " is filtered."
           callback()
         else
-          console.log "no filter"
+          console.log "No filter for " + url
+          swiftype.addUrl url, msg.message.room, (err) ->
+            callback()
+
 
     # willadd = true
     #

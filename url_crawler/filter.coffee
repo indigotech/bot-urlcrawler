@@ -12,4 +12,6 @@ module.exports = (db) ->
             callback true
             return
         callback false
+        return
       callback false
+      return
