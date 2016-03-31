@@ -15,3 +15,11 @@ module.exports = (db) ->
         return
       callback false
       return
+
+  addFilter: (url, callback) ->
+    uri = new URI url
+    host = uri.host()
+    db.addFilter host, callback
+
+  removeFilter: (url, callback) ->
+    #TODO all

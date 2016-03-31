@@ -69,6 +69,12 @@ module.exports = () ->
       }, (err, res) ->
         if err?
           console.log "ERROR sending to swiftype: " + err
-          callback err
+          callback err, null
         else
-          callback res
+          callback null, res
+
+  removeUrl: (url, callback) ->
+    swiftypeKey = process.env.SWIFTYPE_TOKEN
+    swiftypeDelUrl = "https://api.swiftype.com/api/v1/engines/knowledgebase/document_types/links/documents/" + encodeURIComponent(url) + "?auth_token=" + swiftypeKey
+    request.del swiftypeDelUrl, (error, response, body) ->
+      callback error, response
