@@ -2,15 +2,20 @@
 #   URL Crawler
 #
 # Dependencies:
-#   None
+#   swiftype
+#   mongojs
+#   request
 #
 # Configuration:
 #   SLACK_TOKEN
 #   MONGOLAB_URI
 #   SWIFTYPE_TOKEN
 #
+# Commands:
+#   url crawler - Taqtile URL Crawler - Use help-url to know more
+#
 # Author:
-#   Team 4
+#   Taqtile
 
 mongojs = require('mongojs')
 
